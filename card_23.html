@@ -40,10 +40,15 @@ Do not rewrite the whole submission for me.
 Finish with a checklist titled:
 
 READY TO SUBMIT WHEN...</div>
-<p style="margin-top:12px"><button class="button copy-prompt" type="button">Copy All Text</button></p>
+
+<p style="margin-top:12px">
+  <button class="button copy-prompt" type="button">Copy All Text</button>
+</p>
+
 <div class="note"><strong>Before you submit:</strong> Your final submission should represent your own understanding, choices, evidence, and effort. AI can support the process, but it should not create a false record of work or understanding.</div>
 <p style="margin-top:22px"><a class="button" href="index.html">Return Home</a></p>
 </div></main><footer>Academic_Prompts — Use AI to extend your thinking, not replace it.</footer>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.copy-prompt').forEach(function (button) {
@@ -51,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const promptBox = button.closest('.card').querySelector('.prompt');
       const text = promptBox ? promptBox.innerText : '';
       const original = button.textContent;
+
       try {
         if (navigator.clipboard && window.isSecureContext) {
           await navigator.clipboard.writeText(text);
@@ -69,7 +75,10 @@ document.addEventListener('DOMContentLoaded', function () {
       } catch (err) {
         button.textContent = 'Copy failed';
       }
-      setTimeout(function () { button.textContent = original; }, 1600);
+
+      setTimeout(function () {
+        button.textContent = original;
+      }, 1600);
     });
   });
 });
