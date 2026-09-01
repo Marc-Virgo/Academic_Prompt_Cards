@@ -36,7 +36,38 @@ For each idea, briefly explain:
 - what could make it interesting or original.
 
 Then recommend the 3 ideas that seem most realistic and worthwhile.</div>
+<p style="margin-top:12px"><button class="button copy-prompt" type="button">Copy All Text</button></p>
 <div class="note"><strong>Before you act:</strong> Do not simply choose the AI’s favourite idea. Choose a topic you genuinely want to investigate and can complete within the assignment constraints.</div>
 <p style="margin-top:22px"><a class="button" href="index.html">Return Home</a></p>
 </div></main><footer>Academic_Prompts — Use AI to extend your thinking, not replace it.</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.copy-prompt').forEach(function (button) {
+    button.addEventListener('click', async function () {
+      const promptBox = button.closest('.card').querySelector('.prompt');
+      const text = promptBox ? promptBox.innerText : '';
+      const original = button.textContent;
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.setAttribute('readonly', '');
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+        button.textContent = 'Copied!';
+      } catch (err) {
+        button.textContent = 'Copy failed';
+      }
+      setTimeout(function () { button.textContent = original; }, 1600);
+    });
+  });
+});
+</script>
 </body></html>
